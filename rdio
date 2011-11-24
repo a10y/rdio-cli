@@ -35,7 +35,7 @@ def getartist():
 	"""
 	Returns current artist name
 	"""
-	return str(getoutput(COMMAND_PREFIX + "to get the artist of the current track\'"))
+	return getoutput(COMMAND_PREFIX + "to get the artist of the current track\'")
 
 def getsongname():
 	"""
@@ -64,12 +64,15 @@ def quit():
 
 def repl():
 	while(True):
-		prompt = "" + "getartist()" + ":" + bytes(getsongname(), encoding="utf-8").decode() + ">> "
+		# prompt = "" + getartist() + ":" + bytes(getsongname(), encoding="utf-8").decode() + ">> "
+		prompt = ">> "
 		cmd = input(prompt)
 		if cmd == "play": play()
 		elif cmd == "pause": pause()
 		elif cmd == "next": next()
 		elif cmd == "last": last()
+		elif cmd == "artist": print(getartist())
+		elif cmd == "song" : print(getsongname())
 		elif cmd == "mute" : mute()
 		elif cmd == "unmute" : unmute()
 		elif cmd == "exit" : quit()
