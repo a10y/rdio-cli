@@ -1,0 +1,79 @@
+#! /usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
+import sys
+from subprocess import getoutput
+
+COMMAND_PREFIX = "osascript -e \'tell application \"Rdio\" to "
+
+def play():
+	"""
+	Resumes playback
+	"""
+	getoutput(COMMAND_PREFIX + "play" + "\'")
+
+def pause():
+	"""
+	Pauses playback
+	"""
+	getoutput(COMMAND_PREFIX + "pause" + "\'")
+
+def next():
+	"""
+	Plays the next track
+	"""
+	getoutput(COMMAND_PREFIX + "play next track" + "\'")
+
+def last():
+	"""
+	Plays the previous song
+	"""
+	print("playing previous track...")
+	getoutput(COMMAND_PREFIX + "play previos track" + "\'")
+
+def getartist():
+	"""
+	Returns current artist name
+	"""
+	return str(getoutput(COMMAND_PREFIX + "to get the artist of the current track\'"))
+
+def getsongname():
+	"""
+	Returns the string of the current song name
+	"""
+	return getoutput("osascript -e \'tell application \"Rdio\" to get the name of the current track\'")
+	
+def mute():
+	"""
+	Mute the player
+	"""
+	print("Muting...")
+	return getoutput(COMMAND_PREFIX + "to set the sound volume to 0" + "\'")
+
+def unmute():
+	"""
+	Unmute the desktop player
+	"""
+	return getoutput(COMMAND_PREFIX + "to set the sound volume to 0" + "\'")
+
+def quit():
+	"""
+	Exit the nice way
+	"""
+	sys.exit(0)
+
+def repl():
+	while(True):
+		prompt = "" + "getartist()" + ":" + bytes(getsongname(), encoding="utf-8").decode() + ">> "
+		cmd = input(prompt)
+		if cmd == "play": play()
+		elif cmd == "pause": pause()
+		elif cmd == "next": next()
+		elif cmd == "last": last()
+		elif cmd == "mute" : mute()
+		elif cmd == "unmute" : unmute()
+		elif cmd == "exit" : quit()
+
+
+if __name__ == "__main__":
+	repl()
