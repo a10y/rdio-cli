@@ -65,9 +65,24 @@ def quit():
 	"""
 	sys.exit(0)
 
+def getstate():
+	return getoutput(COMMAND_PREFIX + "get the player state" + "\'")
+
+
+def getpos():
+	return getoutput(COMMAND_PREFIX + "get the player position" + "\'")
+
+
+def volume(x):
+	print("Changing volume to " + x + "%")
+	getoutput(COMMAND_PREFIX + "set the sound volume to " + x + "\'")
+
+def print_usage():
+	print("Commands:\n")
+
 def repl():
 	while(True):
-		prompt = "" + getartist() + ":" + getsongname() + ">> "
+		prompt = "" + getstate() + " -- " + getartist() + ":" + getsongname() + ">> "
 		cmd = input(prompt)
 		if cmd == "play": play()
 		elif cmd == "pause": pause()
@@ -78,7 +93,8 @@ def repl():
 		elif cmd == "mute" : mute()
 		elif cmd == "unmute" : unmute()
 		elif cmd == "exit" : quit()
-
+		elif cmd == "sec" : print(getpos())
+		elif cmd.split(" ")[0] == "volume": volume(str(cmd.split(" ")[1]))
 
 if __name__ == "__main__":
 	repl()

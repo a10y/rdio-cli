@@ -10,3 +10,6 @@ Commands that have been implemented:
 -mute
 -unmute
 
+NEW!!!
+-sec (current position in seconds)
+-prompt is now formatted as: (state=playing|paused|stopped) -- (artist_name):(song_title)
