@@ -5,8 +5,8 @@ Commands that have been implemented:
 -last
 -next
 -exit
--song name 
--artist (broken)
--mute (broken)
--unmute (broken)
+-song name
+-artist
+-mute
+-unmute
 

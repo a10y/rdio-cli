@@ -10,12 +10,14 @@ def play():
 	"""
 	Resumes playback
 	"""
+	print("playing...")
 	getoutput(COMMAND_PREFIX + "play" + "\'")
 
 def pause():
 	"""
 	Pauses playback
 	"""
+	print("pausing...")
 	getoutput(COMMAND_PREFIX + "pause" + "\'")
 
 def next():
@@ -23,38 +25,39 @@ def next():
 	Plays the next track
 	"""
 	getoutput(COMMAND_PREFIX + "play next track" + "\'")
-
+	print("playing next track... : " + getsongname())
 def last():
 	"""
 	Plays the previous song
 	"""
-	print("playing previous track...")
-	getoutput(COMMAND_PREFIX + "play previos track" + "\'")
+	getoutput(COMMAND_PREFIX + "play previous track" + "\'")
+	print("playing previous track... : " + getsongname())
 
 def getartist():
 	"""
 	Returns current artist name
 	"""
-	return getoutput(COMMAND_PREFIX + "to get the artist of the current track\'")
+	return getoutput(COMMAND_PREFIX + "get the artist of the current track\'")
 
 def getsongname():
 	"""
 	Returns the string of the current song name
 	"""
-	return getoutput("osascript -e \'tell application \"Rdio\" to get the name of the current track\'")
+	return getoutput(COMMAND_PREFIX + "get the name of the current track\'")
 	
 def mute():
 	"""
 	Mute the player
 	"""
 	print("Muting...")
-	return getoutput(COMMAND_PREFIX + "to set the sound volume to 0" + "\'")
+	return getoutput(COMMAND_PREFIX + "set the sound volume to 0" + "\'")
 
 def unmute():
 	"""
 	Unmute the desktop player
 	"""
-	return getoutput(COMMAND_PREFIX + "to set the sound volume to 0" + "\'")
+	print("unmuting...")
+	return getoutput(COMMAND_PREFIX + "set the sound volume to 100" + "\'")
 
 def quit():
 	"""
@@ -64,8 +67,7 @@ def quit():
 
 def repl():
 	while(True):
-		# prompt = "" + getartist() + ":" + bytes(getsongname(), encoding="utf-8").decode() + ">> "
-		prompt = ">> "
+		prompt = "" + getartist() + ":" + getsongname() + ">> "
 		cmd = input(prompt)
 		if cmd == "play": play()
 		elif cmd == "pause": pause()
